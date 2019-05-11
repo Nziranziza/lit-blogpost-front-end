@@ -1,0 +1,39 @@
+{
+  "login": {
+    "submitting": false,
+    "success": false,
+    "credentials": {
+      "email": "",
+      "password": ""
+      },
+    "error": [],
+    "message": ""
+  },
+  "signup": {
+    "submitting": false,
+    "success": false,
+    "credentials": {
+      "firstName": "",
+      "lastName": "",
+      "email": "",
+      "password": ""
+    },
+    "error": [],
+    "message": ""
+  },
+  "currentUser": {
+    "isLoggedIn": false,
+    "profile": {
+
+    },
+    "postList": [],
+    "token": ""
+  },
+  "posts": {
+    "postList": [],
+    "fetching": false,
+    "message": "",
+    "error": [],
+    "post": {}
+  }
+}
