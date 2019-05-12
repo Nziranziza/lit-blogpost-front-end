@@ -4,10 +4,11 @@
   "description": "LIT-BLOGPOST-FRONT-END WITH REACT",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage --forceExit --detectOpenHandles",
     "start": "serve -s dist",
     "compile": "webpack --mode production",
-    "dev:start": "webpack-dev-server --config ./webpack.config.js --mode development --port 8000 --open"
+    "dev:start": "webpack-dev-server --config ./webpack.config.js --mode development --port 8000 --open",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -23,16 +24,21 @@
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "jest-cli": "^24.5.0",
     "react-hot-loader": "^4.8.3",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.3.1"
+    "webpack-dev-server": "^3.3.1",
+    "coveralls": "^3.0.3"
   },
   "dependencies": {
     "axios": "^0.18.0",

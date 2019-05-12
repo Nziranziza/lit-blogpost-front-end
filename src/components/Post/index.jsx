@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import ContentLoader from "react-content-loader";
 import { fetchPost } from "../../redux/actions/postActions";
 
-class Post extends Component {
+export class Post extends Component {
   componentDidMount() {
     const {
       match: {
@@ -20,7 +20,7 @@ class Post extends Component {
     return (
       <div className="container margin-top">
         {Object.keys(post).length ? (
-          <div>
+          <div data-test="post-card">
             <div className="view">
               <img
                 className="card-img-top"
@@ -54,6 +54,7 @@ class Post extends Component {
             speed={2}
             primaryColor="#f3f3f3"
             secondaryColor="#ecebeb"
+            data-test="skeleton-loading"
           >
             <rect x="0" y="0" rx="0" ry="0" width="400" height="100" />
             <rect x="75" y="110" rx="3" ry="3" width="250" height="6" />

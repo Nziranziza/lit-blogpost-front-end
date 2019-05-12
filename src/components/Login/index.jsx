@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
 import {
   handleLoginInput,
   login,
   inputValidation,
 } from './../../redux/actions/loginActions';
 
-class Login extends Component {
+export class Login extends Component {
   onChange = (e) => {
     const { onLoginInput } = this.props;
     onLoginInput(e.target);
@@ -35,7 +35,7 @@ class Login extends Component {
     const { message } = this.props;
     if (message.length)
     {
-      return <span className="alert alert-danger">{message}</span>
+      return <span className="alert alert-danger" data-test="error-field">{message}</span>
     }
   }
   render() {
@@ -73,7 +73,7 @@ class Login extends Component {
           >Sign in</button>
           <p>
           Not a member?
-            <Link to="/signup">Register</Link>
+            <a href="#/signup">Register</a>
           </p>
         </form>
       </div>
@@ -100,5 +100,23 @@ email,
 password,
 message,
 });
+
+
+Login.propTypes = {
+  message: PropTypes.string,
+  onLoginInput: PropTypes.func.isRequired,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  loginUser: PropTypes.func.isRequired,
+  history: PropTypes.any,
+  verifyInput: PropTypes.func.isRequired,
+};
+
+Login.defaultProps = {
+  message: '',
+  history: {},
+  email: '',
+  password: ''
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

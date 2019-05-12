@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 import { handleSignupInput, register, inputValidation } from './../../redux/actions/signupAction';
 
-class Signup extends Component {
+export class Signup extends Component {
   signUp = (e) => {
     const {  
       firstName, 
@@ -12,10 +13,13 @@ class Signup extends Component {
       password,
       onSignup,
       verifyInput,
+      history,
      } = this.props;
      verifyInput(firstName, lastName, email, password).then((res) => {
        if ( res === 'validationSuccess'){
-      onSignup(firstName, lastName, email, password);
+      onSignup(firstName, lastName, email, password).then(res => {
+        res.status === 201 && history.push('/');
+      });
        }
      });
      e.preventDefault();
@@ -30,7 +34,7 @@ class Signup extends Component {
     const { message } = this.props;
     if (message.length)
     {
-      return <span className="alert alert-danger">{message}</span>
+      return <span className="alert alert-danger" data-test="error-field">{message}</span>
     }
   }
 
@@ -85,7 +89,7 @@ class Signup extends Component {
           >Sign up</button>
           <p>
          Already a member?
-            <Link to="/login">Login</Link>
+            <a href="#/login">Login</a>
           </p>
         </form>
       </div>
@@ -116,4 +120,26 @@ export const mapStateToProps = ({
   password,
   message,
 });
+
+Signup.propTypes = {
+  message: PropTypes.string,
+  onSignupInput: PropTypes.func.isRequired,
+  onSignup: PropTypes.func.isRequired,
+  verifyInput: PropTypes.func.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  message: PropTypes.string,
+  history: PropTypes.any,
+};
+
+Signup.defaultProps = {
+  message: '',
+  firstName: '',
+  lastName: '',
+  password: '',
+  message: '',
+  history: {},
+};
 export default connect(mapStateToProps,mapDispatchToProps)(Signup);
